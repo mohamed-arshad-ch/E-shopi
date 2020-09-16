@@ -9,3 +9,7 @@ def shopgrid(request):
 
 def cart(request):
     return render(request,'user/cart.html')
+
+
+def checkout(request):
+    return render(request,'user/checkout.html')
