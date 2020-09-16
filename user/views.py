@@ -16,3 +16,6 @@ def checkout(request):
 
 def contacts(request):
     return render(request,'user/contact.html')
+
+def productdetails(request):
+    return render(request,'user/product-details.html')
