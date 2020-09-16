@@ -4,7 +4,7 @@ from .import views
 
 urlpatterns = [
     path('',views.landingpage,name="landingpage"),
-    path('shop-grid',views.landingpage,name="shopgrid"),
+    path('shop-grid',views.shopgrid,name="shopgrid"),
     path('cart',views.landingpage,name="cart"),
     path('checkout',views.landingpage,name="checkout"),
     path('contact',views.landingpage,name="contact"),
@@ -13,5 +13,5 @@ urlpatterns = [
     path('checkout-details-add',views.landingpage,name="checkoutdetailsadd"),
     path('login',views.landingpage,name="login"),
     path('register',views.landingpage,name="register"),
-    
+
 ]
