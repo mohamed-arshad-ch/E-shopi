@@ -22,3 +22,7 @@ def productdetails(request):
 
 def wishlist(request):
     return render(request,'user/wishlist.html')
+
+def login(request):
+    return render(request,'user/login.html')
+
