@@ -12,6 +12,6 @@ urlpatterns = [
     path('wishlist',views.wishlist,name="wishlist"),
     path('checkout-details-add',views.landingpage,name="checkoutdetailsadd"),
     path('login',views.login,name="login"),
-    path('register',views.landingpage,name="register"),
+    path('register',views.register,name="register"),
 
 ]

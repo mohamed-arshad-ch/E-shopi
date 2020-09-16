@@ -26,3 +26,5 @@ def wishlist(request):
 def login(request):
     return render(request,'user/login.html')
 
+def register(request):
+    return render(request,'user/register.html')
