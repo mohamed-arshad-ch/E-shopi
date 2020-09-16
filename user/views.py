@@ -6,4 +6,6 @@ def landingpage(request):
 
 def shopgrid(request):
     return render(request,'user/category.html')
-    
+
+def cart(request):
+    return render(request,'user/cart.html')
