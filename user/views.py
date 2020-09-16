@@ -2,5 +2,4 @@ from django.shortcuts import render,HttpResponse
 
 # Create your views here.
 def landingpage(request):
-    return HttpResponse("Langing Page")
-    
+    return render(request,'user/index.html')
