@@ -19,3 +19,6 @@ def contacts(request):
 
 def productdetails(request):
     return render(request,'user/product-details.html')
+
+def wishlist(request):
+    return render(request,'user/wishlist.html')
