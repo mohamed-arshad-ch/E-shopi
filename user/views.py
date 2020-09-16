@@ -13,3 +13,6 @@ def cart(request):
 
 def checkout(request):
     return render(request,'user/checkout.html')
+
+def contacts(request):
+    return render(request,'user/contact.html')
