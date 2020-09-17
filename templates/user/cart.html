@@ -11,39 +11,57 @@
               <div class="table-responsive">
                   <table class="table">
                       <thead>
+
                           <tr>
                               <th scope="col">Product</th>
                               <th scope="col">Price</th>
                               <th scope="col">Quantity</th>
+                              
                               <th scope="col">Total</th>
+                              <th scope="col">Action</th>
                           </tr>
                       </thead>
                       <tbody>
+                        {% if order != None %}
+                        {% for item in order.orderitem_set.all %}
                           <tr>
                               <td>
                                   <div class="media">
                                       <div class="d-flex">
-                                          <img src="{% static 'user/img/cart/cart1.png' %}" alt="">
+                                          <img class="img img-fluid" style="width: 100px;" src="{{item.product.imageURL}}" alt="">
                                       </div>
                                       <div class="media-body">
-                                          <p>Minimalistic shop for multipurpose use</p>
+                                          <p>{{item.product.name}}</p>
                                       </div>
                                   </div>
                               </td>
                               <td>
-                                  <h5>$360.00</h5>
+                                  <h5>${{item.product.price|floatformat:2}}</h5>
                               </td>
                               <td>
                                   <div class="product_count">
-                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                                      <input type="text" name="qty" id="sst" maxlength="12" value="{{item.quantity}}" title="Quantity:"
                                           class="input-text qty">
                                      
                                   </div>
                               </td>
+                             
                               <td>
-                                  <h5>$720.00</h5>
+                                  <h5>${{item.get_total|floatformat:2}}</h5>
+                              </td>
+                              <td>
+                                <a style="color: red;" href=""><i style="padding: 0 10px;" class="far fa-trash-alt"></i></a>
+                                <a href=""><i  class="fas fa-pen-alt"></i></a>
                               </td>
                           </tr>
+                          {% endfor %}
+                          {% else %}
+                         <tr>
+                             <td>
+                                 <h1>sdc</h1>
+                             </td>
+                         </tr>
+                          {% endif %}
                           
                           
                           <tr class="bottom_button">
@@ -86,8 +104,8 @@
                               </td>
                               <td>
                                   <div class="checkout_btn_inner d-flex align-items-center">
-                                      <a class="gray_btn" href="#">Continue Shopping</a>
-                                      <a class="primary-btn ml-2" href="#">Proceed to checkout</a>
+                                      <a class="gray_btn" href="{% url 'landingpage' %}">Continue Shopping</a>
+                                      <a class="primary-btn ml-2" href="{% url 'checkout' %}">Proceed to checkout</a>
                                   </div>
                               </td>
                           </tr>
