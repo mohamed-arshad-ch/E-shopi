@@ -50,7 +50,9 @@
 			device = uuidv4()
 		}
 
-		document.cookie ='device=' + device + ";domain=;path=/"
+    document.cookie ='device=' + device + ";max-age=31536000;path=/"
+    //document.cookie ='device=' + device + ";domain=;path=/"
+    //document.cookie = 'cookie=ok;expires='+now.toGMTString()+';path=/';
 
 	</script>
 </head>

@@ -76,7 +76,7 @@
                 <ul class="card-product__imgOverlay">
                   
                   <li><a href="{% url 'productdetails' product.id %}"><button><i class="ti-shopping-cart"></i></button></a></li>
-                  <li><button><i class="ti-heart"></i></button></li>
+                  <li><a href="{% url 'addwishlist' product.id %}"><button><i class="ti-heart"></i></button></a></li>
                 </ul>
               </div>
               <div class="card-body">

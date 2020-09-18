@@ -32,9 +32,7 @@
 							<li><a class="active" href="#"><span>Category</span> : {{product.cname}}</a></li>
 							
 						</ul>
-						<p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for
-							something that can make your interior look awesome, and at the same time give you the pleasant warm feeling
-							during the winter.</p>
+						<p>{{product.description}}</p>
 						<div class="product_count">
               <label for="qty">Quantity:</label>
 			  <form method="POST" action="{% url 'productdetails' product.id %}">
@@ -49,7 +47,7 @@
 						</div>
 						<div class="card_area d-flex align-items-center">
 							
-							<a class="icon_btn" href="#"><i class="ti-heart"></i></a>
+							<a class="icon_btn" href="{% url 'addwishlist' product.id %}"><i class="ti-heart"></i></a>
 						</div>
 					</div>
 				</div>

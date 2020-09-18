@@ -51,7 +51,7 @@
                               </td>
                               <td>
                                 <a style="color: red;" href=""><i style="padding: 0 10px;" class="far fa-trash-alt"></i></a>
-                                <a href=""><i  class="fas fa-pen-alt"></i></a>
+                                <a href="{% url 'productdetails' item.product.id %}"><i  class="fas fa-pen-alt"></i></a>
                               </td>
                           </tr>
                           {% endfor %}
@@ -64,20 +64,7 @@
                           {% endif %}
                           
                           
-                          <tr class="bottom_button">
-                              <td>
-                                  <a class="button" href="#">Update Cart</a>
-                              </td>
-                              <td>
-
-                              </td>
-                              <td>
-
-                              </td>
-                              <td>
-                                 
-                              </td>
-                          </tr>
+                         
                           <tr>
                               <td>
 

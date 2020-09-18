@@ -22,8 +22,9 @@
               <li class="common-filter">
                 <form action="#">
                   <ul>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men">Men<span> (3600)</span></label></li>
-                   
+                    {% for category in category  %}
+                    <li class="filter-list"><label for="men">{{category.cname}}</label></li>
+                    {% endfor %}
                   </ul>
                 </form>
               </li>
@@ -61,24 +62,27 @@
           <!-- Start Best Seller -->
           <section class="lattest-product-area pb-40 category-list">
             <div class="row">
+
+
+              {% for product in products  %}
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <img class="card-img" src="{% static 'user/img/product/product1.png'%}" alt="">
+                    <img class="card-img" src="{{product.imageURL}}" alt="">
                     <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                      <li><button><i class="ti-heart"></i></button></li>
+                     
+                      <li><a href="{% url 'productdetails' product.id %}"><button><i class="ti-shopping-cart"></i></button></a></li>
+                  <li><a href="{% url 'addwishlist' product.id %}"><button><i class="ti-heart"></i></button></a></li>
                     </ul>
                   </div>
                   <div class="card-body">
-                    <p>Accessories</p>
-                    <h4 class="card-product__title"><a href="#">Quartz Belt Watch</a></h4>
-                    <p class="card-product__price">$150.00</p>
+                    <p>{{product.came}}</p>
+                    <h4 class="card-product__title"><a href="#">{{product.name}}</a></h4>
+                    <p class="card-product__price">${{product.price}}</p>
                   </div>
                 </div>
               </div>
-             
+              {% endfor %}
             
            
          

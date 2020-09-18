@@ -13,5 +13,6 @@ urlpatterns = [
     path('checkout-details-add',views.landingpage,name="checkoutdetailsadd"),
     path('login',views.login,name="login"),
     path('register',views.register,name="register"),
+    path('addwishlist/<int:id>/',views.add_wishlist,name="addwishlist"),
 
 ]
