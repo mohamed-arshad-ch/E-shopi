@@ -47,6 +47,7 @@ class Product(models.Model):
 
 
 class Wishlist(models.Model):
+	user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 	product_id = models.IntegerField()
 	name = models.ForeignKey(Product,on_delete=models.CASCADE, null=True, blank=True)
 	customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)

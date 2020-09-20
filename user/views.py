@@ -8,12 +8,10 @@ from django.http import Http404
 
 def landingpage(request):
     products = Product.objects.all()
-    response = render(request, 'user/index.html', {'products': products})  
-    response.set_cookie('java-tutorial', 'javatpoint.com')  
-    
-    return response 
+    response = render(request, 'user/index.html', {'products': products})
+    response.set_cookie('java-tutorial', 'javatpoint.com')
 
-     
+    return response
 
 
 def shopgrid(request):
@@ -24,7 +22,6 @@ def shopgrid(request):
 
 def cart(request):
     if request.user.is_authenticated:
-        
 
         # print("cx")
         user = User.objects.get(username=request.user)
@@ -39,7 +36,7 @@ def cart(request):
         # fg = Order.objects.filter(customer='ch')
 
         context = {'order': order}
-        
+
         return render(request, 'user/cart.html', context)
     else:
         try:
@@ -54,7 +51,7 @@ def cart(request):
         order, created = Order.objects.get_or_create(
             customer=customer, complete=False)
         context = {'order': order}
-        
+
         return render(request, 'user/cart.html', context)
 
     # 	try:
@@ -105,29 +102,50 @@ def contacts(request):
 
 
 def productdetails(request, pk):
+    user = User.objects.all()
     product = Product.objects.get(id=pk)
+    device = request.COOKIES['device']
+    
+    
 
-    if request.method == 'POST':
-        product = Product.objects.get(id=pk)
-        # Get user account information
-        try:
-            customer = request.user.customer
-        except:
+    if request.user.is_authenticated:
+        cust = Customer.objects.get(user=request.user)
+        order = Order.objects.get(customer=cust)
+        if request.method == 'POST':
+            
+            
+            
+            orderItem, created = OrderItem.objects.get_or_create(
+                order=order, product=product)
+            orderItem.quantity = request.POST['qty']
+            orderItem.save()
+
+            return redirect('cart')
+
+    else:
+        if request.method == 'POST':
+
+            product = Product.objects.get(id=pk)
+            # Get user account information
+            try:
+                customer = request.user.customer
+            except:
+                device = request.COOKIES['device']
+                customer, created = Customer.objects.get_or_create(
+                    device=device)
+
             device = request.COOKIES['device']
-            customer, created = Customer.objects.get_or_create(device=device)
+            order, created = Order.objects.get_or_create(
+                customer=customer, complete=False)
 
-        device = request.COOKIES['device']
-        order, created = Order.objects.get_or_create(
-            customer=customer, complete=False)
+            order.device = device
+            order.save()
+            orderItem, created = OrderItem.objects.get_or_create(
+                order=order, product=product)
+            orderItem.quantity = request.POST['qty']
+            orderItem.save()
 
-        order.device = device
-        order.save()
-        orderItem, created = OrderItem.objects.get_or_create(
-            order=order, product=product)
-        orderItem.quantity = request.POST['qty']
-        orderItem.save()
-
-        return redirect('cart')
+            return redirect('cart')
 
     context = {'product': product}
     return render(request, 'user/product-details.html', context)
@@ -152,14 +170,29 @@ def add_wishlist(request, id):
 
 
 def wishlist(request):
-    try:
-        customer = request.user.customer
-    except:
-        device = request.COOKIES['device']
-        customer, created = Customer.objects.get_or_create(device=device)
+    if request.user.is_authenticated:
+        try:
+            # customer = request.user.customer
+            print(request.user)
+        except:
+            device = request.COOKIES['device']
+            customer = Customer.objects.get(device=device)
+        user = User.objects.get(username=request.user)
+        customer = Customer.objects.get(user=user)
+        
+        wishlist = Wishlist.objects.all()
+        
+        return render(request, 'user/wishlist.html', {'wishlist': wishlist})
+        
+    else:
+        try:
+            customer = request.user.customer
+        except:
+            device = request.COOKIES['device']
+            customer, created = Customer.objects.get_or_create(device=device)
 
-    wishlist = Wishlist.objects.all()
-    return render(request, 'user/wishlist.html', {'wishlist': wishlist, 'customer': customer})
+        wishlist = Wishlist.objects.all()
+        return render(request, 'user/wishlist.html', {'wishlist': wishlist, 'customer': customer})
 
 
 def login(request):
@@ -175,54 +208,47 @@ def login(request):
 
             # order = Order.objects.update_or_create(customer=username,device=device)
 
-            
-
-			
-
-            
-            
             de = Customer.objects.get(name=user.first_name)
-            
-            
-		
-            
+
             # order = Order.objects.get(device=device)
             # order.customer = request.user
             # order.save()
             # order, created = Order.objects.get_or_create(customer=request.user)
             # print(request.user)
 
+            auth.login(request, user)
 
-            auth.login(request,user)
-			
-            
-			
-			# order, created = Order.objects.get_or_create(customer=customer)
+            # order, created = Order.objects.get_or_create(customer=customer)
             # order, created = Order.objects.get_or_create(customer=customer)
             # print(user.username,user.email,user.firstname)
-            
 
             print(de.name)
 
-            order = Order.objects.get(customer=de)
-            order.customer = de
-            order.complete = False
-            order.transaction_id = 1254
-            order.save()
+            # order = Order.objects.get(customer=de)
+            # order.customer = de
+            # order.complete = False
+            # order.transaction_id = 1254
+            # order.save()
 
-			
-			
+            wish = Wishlist.objects.get(customer=de)
 
+            if wish > 0:
+                wish.user = request.user
+                wish.save()
+                return redirect('landingpage')
+            else:
+                return redirect('landingpage')
+                
+
+           
 
             # customer.user = user.username
 
             # customer.email = user.email
             # customer.save()
 
-            
             return redirect('landingpage')
             # return redirect('landingpage')
-       
 
         else:
             print("loging rror")
@@ -243,20 +269,20 @@ def register(request):
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
-        
-        
+
         user = User.objects.create_user(
             username=username, email=email, password=password, first_name=fname)
         device = request.COOKIES['device']
         # customer, created = Customer.objects.get_or_create(user=user.username,name=fname,email=email,device=device)
         # userdata = User.objects.get(username=username)
-
+        device = request.COOKIES['device']
+        customer, created = Customer.objects.get_or_create(
+                device=device)
         customer = Customer.objects.get(device=device)
 
-
         customer.user = user
-            # customer.name = user.firstname
-           
+        # customer.name = user.firstname
+
         customer.name = fname
         customer.email = email
         customer.device = device
@@ -270,16 +296,9 @@ def register(request):
 
 def logout(request):
     auth.logout(request)
-    device = request.COOKIES['device']
-    customer, created = Customer.objects.get_or_create(device=device)
-    customer.device=''
-    customer.save() 
-    response = redirect('/') 
-    de = Customer.objects.get(device=device)
-    de.delete()
-    response.delete_cookie('device') 
-    
-    
-    
-    
-    return response 
+
+    response = redirect('/')
+
+    response.delete_cookie('device')
+
+    return response
