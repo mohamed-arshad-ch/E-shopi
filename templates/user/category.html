@@ -3,6 +3,32 @@
 {% block content %}
   
 {% load static %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $("#search").on("keyup", function() {
+    
+    var term = $(this).val().toLowerCase();
+    $("#gh *").each(function() {
+      $row = $(this);
+      var name = $row.find("h4:nth-child(2)").text().toLowerCase();
+      console.log(name)
+      if (name.search(term) < 0 ) {
+        $row.hide()
+        
+      }else{
+        $row.show()
+      }
+
+      
+    });
+  });
+});
+
+</script>
   
 	<!--================ End Header Menu Area =================-->
 
@@ -22,9 +48,14 @@
               <li class="common-filter">
                 <form action="#">
                   <ul>
+                    
+                     
                     {% for category in category  %}
-                    <li class="filter-list"><label for="men">{{category.cname}}</label></li>
+                    
+                    
+                    <a href="{% url 'categorysort' category.cname  %}"><li class="filter-list"><label for="men">{{category.cname}}</label></li></a><br>
                     {% endfor %}
+                  </form>
                   </ul>
                 </form>
               </li>
@@ -51,7 +82,7 @@
             </div>
             <div>
               <div class="input-group filter-bar-search">
-                <input type="text" placeholder="Search">
+                <input type="text" id="search" placeholder="Search">
                 <div class="input-group-append">
                   <button type="button"><i class="ti-search"></i></button>
                 </div>
@@ -61,23 +92,23 @@
           <!-- End Filter Bar -->
           <!-- Start Best Seller -->
           <section class="lattest-product-area pb-40 category-list">
-            <div class="row">
-
+            <div  id="gh" class="row">
+          
 
               {% for product in products  %}
-              <div class="col-md-6 col-lg-4">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
+              <div id="locaa" class="col-md-6 col-lg-4">
+                <div id="locaa" class="card text-center card-product">
+                  <div id="locaa" class="card-product__img">
                     <img class="card-img" src="{{product.imageURL}}" alt="">
                     <ul class="card-product__imgOverlay">
-                     
+                  
                       <li><a href="{% url 'productdetails' product.id %}"><button><i class="ti-shopping-cart"></i></button></a></li>
-                  <li><a href="{% url 'addwishlist' product.id %}"><button><i class="ti-heart"></i></button></a></li>
+                      <li><a href="{% url 'addwishlist' product.id %}"><button><i class="ti-heart"></i></button></a></li>
                     </ul>
                   </div>
-                  <div class="card-body">
+                  <div id="locaa" class="card-body">
                     <p>{{product.came}}</p>
-                    <h4 class="card-product__title"><a href="#">{{product.name}}</a></h4>
+                    <h4 class="card-product__title" id="prname"><a href="#">{{product.name}}</a></h4>
                     <p class="card-product__price">${{product.price}}</p>
                   </div>
                 </div>

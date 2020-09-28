@@ -9,7 +9,12 @@
 
 
   <main class="site-main">
-    
+    {% for message in messages %}
+    <div class="alert alert-success">
+      <strong>Success!</strong> {{message}}
+    </div>
+    {% endfor %}
+
     <!--================ Hero banner start =================-->
     <section class="hero-banner">
       <div class="container">
@@ -72,10 +77,12 @@
           <div class="col-md-6 col-lg-4 col-xl-3">
             <div class="card text-center card-product">
               <div class="card-product__img">
-                <img class="card-img" src="{{product.imageURL}}" alt="">
+                <a href="{% url 'productdetails' product.id %}">
+                  <img src="{{ product.imageURL }}" class="img-thumbnail" alt="Cinque Terre" width="200" height="150"> 
+                </a>
                 <ul class="card-product__imgOverlay">
                   
-                  <li><a href="{% url 'productdetails' product.id %}"><button><i class="ti-shopping-cart"></i></button></a></li>
+                  <li><a href="{% url 'addcartfromland' product.id %}"><button><i class="ti-shopping-cart"></i></button></a></li>
                   <li><a href="{% url 'addwishlist' product.id %}"><button><i class="ti-heart"></i></button></a></li>
                 </ul>
               </div>

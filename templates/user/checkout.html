@@ -61,28 +61,15 @@
                             
                         </ul>
                         <ul class="list list_2">
-                            <li><a href="#">Subtotal <span>$2160.00</span></a></li>
+                            <li><a href="#">Subtotal <span>${{order.get_cart_total}}</span></a></li>
                             <li><a href="#">Shipping <span>Free</span></a></li>
-                            <li><a href="#">Total <span>$2210.00</span></a></li>
+                            <li><a href="#">Total <span>${{order.get_cart_total}}</span></a></li>
                         </ul>
                         
-                        <div class="payment_item active">
-                            <div class="radion_btn">
-                                <input type="radio" id="f-option6" name="selector">
-                                <label for="f-option6">Paypal </label>
-                                <img src="img/product/card.jpg" alt="">
-                                <div class="check"></div>
-                            </div>
-                            <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
-                                account.</p>
-                        </div>
-                        <div class="creat_account">
-                            <input type="checkbox" id="f-option4" name="selector">
-                            <label for="f-option4">I’ve read and accept the </label>
-                            <a href="#">terms & conditions*</a>
-                        </div>
+                        
+                        
                         <div class="text-center">
-                          <a class="button button-paypal" href="#">Proceed to Paypal</a>
+                          <a class="button button-paypal" href="{% url 'payment' %}">Proceed to Paypal</a>
                         </div>
                     </div>
                 </div>

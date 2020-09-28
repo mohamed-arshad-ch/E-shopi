@@ -9,7 +9,14 @@
 	<!-- ================ end banner area ================= -->
   
   <!--================Login Box Area =================-->
+
+  {% for message in messages %}
+		<div class="alert alert-danger">
+			<strong>Danger!</strong> {{message}}
+		  </div>
+		{% endfor %}
 	<section class="login_box_area section-margin">
+		
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
@@ -24,6 +31,14 @@
 				<div class="col-lg-6">
 					<div class="login_form_inner">
 						<h3>Log in to enter</h3>
+						<div class="col-md-12 form-group">
+							<a href="{% url 'social:begin' 'facebook' %}"><button style="width: 50px;" value="Login With Facebook" class="button button-login w-100">Login With Facebook</button></a>
+							
+						</div>
+						<div class="col-md-12 form-group">
+							<a href="{% url 'verification' %}"><button style="width: 70px;" value="Login With OTP" class="button button-register w-100">Login With OTP</button></a>
+							
+						</div>
 						<form class="row login_form" action="" id="contactForm" method="POST" >
 							{% csrf_token %}
 							<div class="col-md-12 form-group">

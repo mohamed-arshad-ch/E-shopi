@@ -15,5 +15,14 @@ urlpatterns = [
     path('register',views.register,name="register"),
     path('addwishlist/<int:id>/',views.add_wishlist,name="addwishlist"),
     path('logout',views.logout,name="logout"),
+    path('payment',views.payment,name="payment"),
+    path('otp',views.otp,name="otp"),
+    path('verification',views.verify,name="verification"),
+    path('addcartfromland/<int:id>/',views.addcartfromland,name="addcartfromland"),
+    path('categorysort/<str:name>/',views.categorysort,name="categorysort"),
+    path('itemplus/<int:id>/',views.itemplus,name="itemplus"),
+    path('itemminus/<int:id>/',views.itemminus,name="itemminus"),
+    path('removewishlist/<int:id>',views.removewishlist,name="removewishlist"),
+    path('cartproductdelete/<int:id>',views.cartproductdelete,name="cartproductdelete")
 
 ]

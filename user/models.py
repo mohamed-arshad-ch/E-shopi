@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+# class User(AbstractUser):
+# 	passww = models.CharField(max_length=200, null=True, blank=True)
+	
+
 class Customer(models.Model):
 	user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 	name = models.CharField(max_length=200, null=True, blank=True)
@@ -32,6 +36,7 @@ class Product(models.Model):
 	cname = models.ForeignKey(Category,on_delete=models.CASCADE, null=True, blank=True)
 	description = models.CharField(max_length=300)
 	price = models.DecimalField(max_digits=7, decimal_places=2)
+	qty = models.IntegerField()
 	image = models.ImageField(null=True, blank=True)
 
 	def __str__(self):

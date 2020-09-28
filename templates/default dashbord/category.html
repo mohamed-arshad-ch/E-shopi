@@ -1,0 +1,67 @@
+{% extends 'default dashbord/base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<div class="row">
+    <div class="col">
+      <div class="card">
+        <!-- Card header -->
+        <div class="card-header border-0">
+          <h3 class="mb-0">CATEGORIES</h3>
+        </div>
+        <a href="{% url 'addcategory' %}"><button class="btn btn-primary">Add Categories</button></a>
+        <br>
+        <!-- Light table -->
+        <div class="table-responsive">
+          
+          
+            
+          
+            
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                
+                <th scope="col">Category Name</th>
+                <th scope="col">Description</th>
+                
+                
+                
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            {% for cat in category  %}
+            <tbody class="list">
+              <tr>
+                
+                <th scope="row">
+                  {{cat.cname}}
+                </th>
+                <td>
+                    {{cat.description}}
+                </td>
+                
+                
+               
+                
+                <td>
+                  <a href="{% url 'categoryedit' cat.id %}"><button class="btn btn-primary">Edit</button></a>
+                  <a href="{% url 'categorydelete' cat.id %}" onclick="return confirm('Are you sure you want to delete this?')"><button class="btn btn-danger">Delete</button></a>
+                </td>
+                
+              </tr>
+              
+              
+            </tbody>
+            {% endfor %}
+          </table>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -4,25 +4,35 @@
 {% block content %}
 	
 	{% load static %}
+
+	
+
 	<!-- ================ start banner area ================= -->	
 
 
   <!--================Single Product Area =================-->
+
+
+  
+	
+
+
+
+
 	<div class="product_image_area">
 		<div class="container">
 			<div class="row s_product_inner">
 				<div class="col-lg-6">
-					<div class="owl-carousel owl-theme s_Product_carousel">
+					<!-- <div class="owl-carousel owl-theme s_Product_carousel">
 						<div class="single-prd-item">
-							<img class="img-fluid" src="{{product.imageURL}}" alt="">
+							<img class="img-fluid"  width="50" style="width: 300px !important;" src="{{product.imageURL}}"  alt="">
 						</div>
-						<!-- <div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-						</div>
-						<div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-						</div> -->
+						
+					</div> -->
+					<div id="exzoom" class="exzoom">
+						<img src="{{ product.imageURL }}" class="img-thumbnail" alt="Cinque Terre" width="304" height="236"> 
 					</div>
+					
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
@@ -91,6 +101,11 @@
       </div>
 		</div>
 	</section>
+
+
+	
+
+	
 	<!--================ end related Product area =================-->  	
 
 	{% endblock content %}

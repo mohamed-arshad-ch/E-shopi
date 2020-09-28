@@ -22,7 +22,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('user.urls')),
-    path('',include('adminn.urls'))
+    path('',include('adminn.urls')),
+    path('social-auth/', include('social_django.urls', namespace="social")),
   
 
     

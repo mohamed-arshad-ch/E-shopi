@@ -1,0 +1,97 @@
+{% extends 'default dashbord/base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<div class="row">
+    <div class="col">
+      <div class="card">
+        <!-- Card header -->
+        <div class="card-header border-0">
+          <h3 class="mb-0">{{key}} CATEGORIES</h3>
+        </div>
+        
+        <!-- Light table -->
+        <div class="table-responsive">
+          
+          
+            
+          
+            
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+               
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Product Name</label>
+                        <input type="text" id="input-username" class="form-control" name="pname" value="{{product.name}}" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Category</label>
+                        <select name="category" class="form-control" required>
+                            
+                            
+                            {% if key == "Add" %}
+                            {% for c in cat  %}
+                                
+                            
+                            <option value="{{c.cname}}" >{{c.cname}}</option>
+                            
+                            {% endfor %}
+                            {% else %}
+                            <option value="{{c.cname}}" selected>{{product.cname}}</option>
+                            {% for c in cat  %}
+                                
+                            
+                                
+                            <option value="{{c.cname}}" >{{c.cname}}</option>
+                            {% endfor %}
+                                
+                            {% endif %}
+                                
+                            
+                            
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Description</label>
+                        <input  type="text" id="input-username" class="form-control" name="desc"  value="{{product.description}}" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Price</label>
+                        <input type="text" id="input-username" class="form-control" name="price"  value="{{product.price}}" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Qty</label>
+                        <input type="text" id="input-username" class="form-control" name="qty"  value="{{product.qty}}" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Image</label>
+                        <input type="file" id="input-username" value="{{product.image}}" class="form-control" name="myfile" required >
+                      </div>
+                      <div class="form-group">
+                        
+                        <input type="submit"  class="form-control btn btn-primary"  value="{{key}}">
+                      </div>
+
+                    </div>
+                  
+                  </div>
+              
+                </div>
+                
+              </form>
+
+
+
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

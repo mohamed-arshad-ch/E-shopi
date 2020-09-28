@@ -1,0 +1,183 @@
+{% extends 'user/base.html' %}
+
+
+{% block content %}
+<style>
+    #wrapper {
+  font-family: Lato;
+  font-size: 1.5rem;
+  text-align: center;
+  box-sizing: border-box;
+  color: #333;
+  
+  #dialog {
+    border: solid 1px #ccc;
+    margin: 10px auto;
+    padding: 20px 30px;
+    display: inline-block;
+    box-shadow: 0 0 4px #ccc;
+    background-color: #FAF8F8;
+    overflow: hidden;
+    position: relative;
+    max-width: 450px;
+    
+    h3 {
+      margin: 0 0 10px;
+      padding: 0;
+      line-height: 1.25;
+    }
+    
+    span {
+      font-size: 90%;
+    }
+    
+    #form {
+      max-width: 240px;
+      margin: 25px auto 0;
+      
+      input {
+        margin: 0 5px;
+        text-align: center;
+        line-height: 80px;
+        font-size: 50px;
+        border: solid 1px #ccc;
+        box-shadow: 0 0 5px #ccc inset;
+        outline: none;
+        width: 20%;
+        transition: all .2s ease-in-out;
+        border-radius: 3px;
+        
+        &:focus {
+          border-color: purple;
+          box-shadow: 0 0 5px purple inset;
+        }
+        
+        &::selection {
+          background: transparent;
+        }
+      }
+      
+      button {
+        margin:  30px 0 50px;
+        width: 100%;
+        padding: 6px;
+        background-color: #B85FC6;
+        border: none;
+        text-transform: uppercase;
+      }
+    }
+    
+    button {
+      &.close {
+        border: solid 2px;
+        border-radius: 30px;
+        line-height: 19px;
+        font-size: 120%;
+        width: 22px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+      }           
+    }
+    
+    div {
+      position: relative;
+      z-index: 1;
+    }
+    
+    img {
+      position: absolute;
+      bottom: -70px;
+      right: -63px;
+    }
+  }
+}
+</style>
+
+<script>
+    $(function() {
+  'use strict';
+
+  var body = $('body');
+
+  function goToNextInput(e) {
+    var key = e.which,
+      t = $(e.target),
+      sib = t.next('input');
+
+    if (key != 9 && (key < 48 || key > 57)) {
+      e.preventDefault();
+      return false;
+    }
+
+    if (key === 9) {
+      return true;
+    }
+
+    if (!sib || !sib.length) {
+      sib = body.find('input').eq(0);
+    }
+    sib.select().focus();
+  }
+
+  function onKeyDown(e) {
+    var key = e.which;
+
+    if (key === 9 || (key >= 48 && key <= 57)) {
+      return true;
+    }
+
+    e.preventDefault();
+    return false;
+  }
+  
+  function onFocus(e) {
+    $(e.target).select();
+  }
+
+  body.on('keyup', 'input', goToNextInput);
+  body.on('keydown', 'input', onKeyDown);
+  body.on('click', 'input', onFocus);
+
+})
+</script>
+<br>
+<br>
+<br>
+<br>
+{% for message in messages %}
+<div class="alert alert-danger">
+  <strong>Danger!</strong> {{message}} 
+  </div>
+{% endfor %}
+<div id="wrapper">
+    <div id="dialog">
+      <button class="close">×</button>
+     
+      <div id="form">
+          <form action="" method="POST">
+              {% csrf_token %}
+        <input name="otp_id" type="hidden" value="{{id}}">
+        <input name="one"  type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input name="two" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input name="three" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input name="four" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input name="five" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input name="six" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <br>
+        <br>
+        
+        <button class="button button-hero" >Verify</button>
+      </div>
+    </form>
+      
+      
+    </div>
+  </div>
+<br>
+<br>
+<br>
+
+
+
+{% endblock %}
