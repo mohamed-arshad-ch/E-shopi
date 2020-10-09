@@ -1,64 +1,67 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>E-shopi</title>
-	<link rel="icon" href="{% static 'user/img/Fevicon.png' %}" type="image/png">
+  <link rel="icon" href="{% static 'user/img/Fevicon.png' %}" type="image/png">
   <link rel="stylesheet" href="{% static 'user/vendors/bootstrap/bootstrap.min.css' %}">
   <link rel="stylesheet" href="{% static 'user/vendors/fontawesome/css/all.min.css' %}">
-	<link rel="stylesheet" href="{% static 'user/vendors/themify-icons/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'user/vendors/themify-icons/themify-icons.css' %}">
   <link rel="stylesheet" href="{% static 'user/vendors/nice-select/nice-select.css' %}">
   <link rel="stylesheet" href="{% static 'user/vendors/owl-carousel/owl.theme.default.min.css' %}">
   <link rel="stylesheet" href="{% static 'user/vendors/owl-carousel/owl.carousel.min.css' %}">
-  
+
   <link rel="stylesheet" href="{% static 'user/css/style.css' %}">
+
   <script type="text/javascript">
 
-		function getCookie(name) {
-		    var cookieValue = null;
-		    if (document.cookie && document.cookie !== '') {
-		        var cookies = document.cookie.split(';');
-		        for (var i = 0; i < cookies.length; i++) {
-		            var cookie = cookies[i].trim();
-		            // Does this cookie string begin with the name we want?
-		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-		                break;
-		            }
-		        }
-		    }
-		    return cookieValue;
-		}
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
 
 
-		function uuidv4() {
-		  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-		    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-		    return v.toString(16);
-		  });
-		}
+    function uuidv4() {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
 
 
 
 
-		let device = getCookie('device')
+    let device = getCookie('device')
 
-		if (device == null || device == undefined){
-			device = uuidv4()
-		}
+    if (device == null || device == undefined) {
+      device = uuidv4()
+    }
 
-    document.cookie ='device=' + device + ";max-age=31536000;path=/"
+    document.cookie = 'device=' + device + ";max-age=31536000;path=/"
     //document.cookie ='device=' + device + ";domain=;path=/"
     //document.cookie = 'cookie=ok;expires='+now.toGMTString()+';path=/';
 
-	</script>
+  </script>
 </head>
+
 <body>
   <!--================ Start Header Menu Area =================-->
-	<header class="header_area">
+  <header class="header_area">
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
@@ -77,9 +80,9 @@
                   aria-expanded="false">Shop</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="{% url 'shopgrid' %}">Shop Category</a></li>
-                  
+
                   <li class="nav-item"><a class="nav-link" href="{% url 'checkout' %}">Product Checkout</a></li>
-                 
+
                   <li class="nav-item"><a class="nav-link" href="{% url 'cart' %}">Shopping Cart</a></li>
                 </ul>
               </li>
@@ -99,21 +102,23 @@
               &nbsp;
               &nbsp;
               &nbsp;
+
+
               <li class="nav-item submenu dropdown">
                 {% if user.is_authenticated %}
-                <a href="{% url 'login' %}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">{{request.user.first_name}}</a>
-                  {% else %}
-                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                <a href="{% url 'login' %}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">{{request.user.first_name}}</a>
+                {% else %}
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Login</a>
-                  {% endif %}
+                {% endif %}
 
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" href="{% url 'shopgrid' %}">My Profile</a></li>
-                  
-                  <li class="nav-item"><a class="nav-link" href="{% url 'checkout' %}">Orders</a></li>
+
+                  <li class="nav-item"><a class="nav-link" href="{% url 'orderhistory' %}">Orders</a></li>
                   {% if user.is_authenticated %}
-                 
+
                   <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                   {% else %}
                   <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Login</a></li>
@@ -121,28 +126,29 @@
                 </ul>
               </li>
 
-              
-            
-            
+
+
+
             </ul>
-           
+
 
             <ul class="nav-shop">
-             
+
               <li class="nav-item"><a href="{% url 'wishlist' %}"><button><i class="ti-heart"></i></button></a></li>
-              <li class="nav-item"><a href="{% url 'cart' %}"><button><i class="ti-shopping-cart"></i></button></a> </li>
-              
+              <li class="nav-item"><a href="{% url 'cart' %}"><button><i class="ti-shopping-cart"></i><span
+                      class="nav-shop__circle">{{cartItems}}</span></button></a> </li>
+
               <!-- {% if user.is_authenticated %}
               <li class="nav-item"><a class="button button-header" href="{% url 'logout' %}">Logout</a></li>
               
               {% else %}
               <li class="nav-item"><a class="button button-header" href="{% url 'login' %}">Login</a></li>
               {% endif %} -->
-              
-              
+
+
             </ul>
 
-            
+
           </div>
         </div>
       </nav>
@@ -152,7 +158,7 @@
   {% block content %}
 
   {% endblock %}
-  
+
 
 
 
@@ -160,34 +166,34 @@
 
   <footer class="footer">
     <div class="footer-area">
-        <div class="container">
-            <div class="row section_gap">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="single-footer-widget tp_widgets">
-                        <h4 class="footer_title large_title">Our Mission</h4>
-                        <p>
-                            So seed seed green that winged cattle in. Gathering thing made fly you're no 
-                            divided deep moved us lan Gathering thing us land years living.
-                        </p>
-                        <p>
-                            So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved 
-                        </p>
-                    </div>
-                </div>
-                <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
-                    <div class="single-footer-widget tp_widgets">
-                        <h4 class="footer_title">Quick Links</h4>
-                        <ul class="list">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Shop</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Product</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6">
+      <div class="container">
+        <div class="row section_gap">
+          <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="single-footer-widget tp_widgets">
+              <h4 class="footer_title large_title">Our Mission</h4>
+              <p>
+                So seed seed green that winged cattle in. Gathering thing made fly you're no
+                divided deep moved us lan Gathering thing us land years living.
+              </p>
+              <p>
+                So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved
+              </p>
+            </div>
+          </div>
+          <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+            <div class="single-footer-widget tp_widgets">
+              <h4 class="footer_title">Quick Links</h4>
+              <ul class="list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Product</a></li>
+                <li><a href="#">Brand</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- <div class="col-lg-2 col-md-6 col-sm-6">
                     <div class="single-footer-widget instafeed">
                         <h4 class="footer_title">Gallery</h4>
                         <ul class="list instafeed d-flex flex-wrap">
@@ -199,63 +205,68 @@
                             <li><img src="img/gallery/r8.jpg" alt=""></li>
                         </ul>
                     </div>
-                </div>
-                <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
-                    <div class="single-footer-widget tp_widgets">
-                        <h4 class="footer_title">Contact Us</h4>
-                        <div class="ml-40">
-                            <p class="sm-head">
-                                <span class="fa fa-location-arrow"></span>
-                                Head Office
-                            </p>
-                            <p>123, Main Street, Your City</p>
+                </div> -->
+          <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+            <div class="single-footer-widget tp_widgets">
+              <h4 class="footer_title">Contact Us</h4>
+              <div class="ml-40">
+                <p class="sm-head">
+                  <span class="fa fa-location-arrow"></span>
+                  Head Office
+                </p>
+                <p>123, Main Street, Your City</p>
 
-                            <p class="sm-head">
-                                <span class="fa fa-phone"></span>
-                                Phone Number
-                            </p>
-                            <p>
-                                +123 456 7890 <br>
-                                +123 456 7890
-                            </p>
+                <p class="sm-head">
+                  <span class="fa fa-phone"></span>
+                  Phone Number
+                </p>
+                <p>
+                  +123 456 7890 <br>
+                  +123 456 7890
+                </p>
 
-                            <p class="sm-head">
-                                <span class="fa fa-envelope"></span>
-                                Email
-                            </p>
-                            <p>
-                                free@infoexample.com <br>
-                                www.infoexample.com
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <p class="sm-head">
+                  <span class="fa fa-envelope"></span>
+                  Email
+                </p>
+                <p>
+                  free@infoexample.com <br>
+                  www.infoexample.com
+                </p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <div class="footer-bottom">
-        <div class="container">
-            <div class="row d-flex">
-                <p class="col-lg-12 footer-text text-center">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-            </div>
+      <div class="container">
+        <div class="row d-flex">
+          <p class="col-lg-12 footer-text text-center">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with
+            <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+              target="_blank">Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
         </div>
+      </div>
     </div>
-</footer>
-<!--================ End footer Area  =================-->
+  </footer>
+  <!--================ End footer Area  =================-->
 
 
 
-<script src="{% static 'user/vendors/jquery/jquery-3.2.1.min.js' %}"></script>
-<script src="{% static 'user/vendors/bootstrap/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'user/vendors/skrollr.min.js' %}"></script>
-<script src="{% static 'user/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
-<script src="{% static 'user/vendors/nice-select/jquery.nice-select.min.js' %}"></script>
-<script src="{% static 'user/vendors/jquery.ajaxchimp.min.js' %}"></script>
-<script src="{% static 'user/vendors/mail-script.js' %}"></script>
-<script src="{% static 'user/js/main.js' %}"></script>
+  <script src="{% static 'user/vendors/jquery/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'user/vendors/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'user/vendors/skrollr.min.js' %}"></script>
+  <script src="{% static 'user/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'user/vendors/nice-select/jquery.nice-select.min.js' %}"></script>
+  <script src="{% static 'user/vendors/jquery.ajaxchimp.min.js' %}"></script>
+  <script src="{% static 'user/vendors/mail-script.js' %}"></script>
+  <script src="{% static 'user/js/main.js' %}"></script>
 </body>
+
 </html>

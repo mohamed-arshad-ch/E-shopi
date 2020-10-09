@@ -9,7 +9,7 @@
       <div class="card">
         <!-- Card header -->
         <div class="card-header border-0">
-          <h3 class="mb-0">Light table</h3>
+          <h3 class="mb-0">Orders</h3>
         </div>
         <!-- Light table -->
         <div class="table-responsive">
@@ -22,57 +22,71 @@
             <thead class="thead-light">
               <tr>
                 <th scope="col" class="sort" data-sort="name">Date Ordered</th>
-                <th scope="col" class="sort" data-sort="name">Order ID</th>
+                
                 
                 <th scope="col">Price</th>
-                <th scope="col" class="sort" data-sort="status">Status</th>
-                <th scope="col">Users</th>
+                <th scope="col">Status</th>
                 
+                <th scope="col">Users</th>
                 <th scope="col">Action</th>
+                
+                
               </tr>
             </thead>
             {% for ord in order  %}
+            
+            {% if ord.get_cart_total > 0 %}
+
+            
+            {% if ord.customer.user ==  None %}
+              
+            
+              
+              
+           
+              
+           
+            {% else %}
             <tbody class="list">
               <tr>
                 <th scope="row">
                     {{ord.date_ordered}}
                   </th>
-                <th scope="row">
-                  {{ord.transaction_id}}
-                </th>
-                
+               
                 <td>
-                    ${{ord.total}}
+                    ${{ord.get_cart_total}}
 
                 </td>
                 <td>
+                  <p>
+                    
+                    
+                      
+                  </p>
+                </td>
+               
+                <td>
                   
-                  {% if ord.complete == False %}
-                  <span class="badge badge-dot mr-4">
-                    <i class="bg-warning"></i>
-                    <span class="status">Pending</span>
-                  </span>
-                    {% else %}
-                    <span class="badge badge-dot mr-4">
-                      <i class="bg-success"></i>
-                      <span class="status">Complete</span>
-                    </span>
+                  
+                  {{ord.customer.user}}
 
-                  {% endif %}
                     
                   
+                    
+                 
                 </td>
                 <td>
-                  {{ord.customer}}
-                </td>
-                <td>
-                  <button class="btn btn-primary">Proceed</button>
+                  <a href="{% url 'statuschange' ord.id %}"><button class="btn btn-primary" >Action</button></a>
                 </td>
                 
               </tr>
               
               
             </tbody>
+            {% endif %}
+            
+
+            {% endif %}
             {% endfor %}
           </table>
           

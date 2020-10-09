@@ -94,7 +94,7 @@
 }
 </style>
 
-<script>
+<!-- <script>
     $(function() {
   'use strict';
 
@@ -140,7 +140,9 @@
   body.on('click', 'input', onFocus);
 
 })
-</script>
+</script> -->
+
+
 <br>
 <br>
 <br>
@@ -158,12 +160,12 @@
           <form action="" method="POST">
               {% csrf_token %}
         <input name="otp_id" type="hidden" value="{{id}}">
-        <input name="one"  type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-        <input name="two" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-        <input name="three" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-        <input name="four" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-        <input name="five" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
-        <input name="six" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input class="inputs" name="one"  type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input class="inputs" name="two" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input name="three" class="inputs" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input name="four" class="inputs" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input name="five" class="inputs" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
+        <input name="six" class="inputs" type="text" maxLength="1" size="1" min="0" max="9" pattern="[0-9]{1}" />
         <br>
         <br>
         
@@ -178,6 +180,13 @@
 <br>
 <br>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-
+<script>
+  $(".inputs").keyup(function () {
+       if (this.value.length == this.maxLength) {
+         $(this).next('.inputs').focus();
+       }
+ });
+</script>
 {% endblock %}

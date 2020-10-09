@@ -23,6 +23,16 @@ urlpatterns = [
     path('itemplus/<int:id>/',views.itemplus,name="itemplus"),
     path('itemminus/<int:id>/',views.itemminus,name="itemminus"),
     path('removewishlist/<int:id>',views.removewishlist,name="removewishlist"),
-    path('cartproductdelete/<int:id>',views.cartproductdelete,name="cartproductdelete")
+    path('cartproductdelete/<int:id>',views.cartproductdelete,name="cartproductdelete"),
+
+    path('savebook/',views.AjaxHandler.as_view()),
+
+    path('shippinaddress/',views.ShippingWalidation.as_view()),
+
+    path('otpview/',views.OtpView.as_view()),
+    path('orderproceed',views.dfg),
+    path('orderhistory',views.orderhistory,name="orderhistory"),
+    path('getshipping/',views.Getshipping.as_view())
+
 
 ]

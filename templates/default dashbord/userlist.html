@@ -1,0 +1,100 @@
+{% extends 'default dashbord/base.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <!-- Card header -->
+            <div class="card-header border-0">
+                <h3 class="mb-0">USERS</h3>
+            </div>
+            
+           
+            
+            
+           
+
+          <ul class="dropdown-menu">
+            
+            {% for ca in  cat %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'shopgrid' %}">{{ca.cname}}</a></li>
+            {% endfor %}
+              
+            
+            
+            
+           
+          </ul>
+        </li> 
+            <!-- Light table -->
+            <div class="table-responsive">
+
+
+
+
+
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" class="sort" data-sort="name">Username</th>
+                            <th scope="col" class="sort" data-sort="name">First Name</th>
+                            <th scope="col" class="sort" data-sort="name">Email</th>
+                            <th scope="col" class="sort" data-sort="name">Phone Number</th>
+                            <th scope="col" class="sort" data-sort="name">Action</th>
+                            
+                            
+                        </tr>
+                    </thead>
+                    {% for use in users  %}
+                    
+                    
+                    {% if use.is_superuser == True %}
+                        
+                    
+                    {% else %}
+                        
+                    
+                        
+                                        
+                    <tbody id="myTable" class="list">
+                        <tr>
+                            <th scope="row">
+                                {{use.username}}
+                            </th>
+                            <th scope="row">
+                                {{use.first_name}}
+                            </th>
+                            <td>
+                                {{use.email}}
+                            </td>
+                            <td>
+                                {{use.last_name}}
+                            </td>
+                            <td>
+                                
+                                {% if use.is_staff == True %}
+                                <a href="{% url 'useredit' use.id %}"><button class="btn btn-primary">Deactive</button></a>
+                                {% else %}
+                                <a href="{% url 'useredit' use.id %}"><button class="btn btn-danger">Active </button></a>
+                                    
+                                {% endif %}
+                                    
+                                
+                            </td>
+
+                        </tr>
+                    </tbody>
+                    {% endif %}
+                    {% endfor %}
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

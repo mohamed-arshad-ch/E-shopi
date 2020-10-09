@@ -3,7 +3,26 @@
 
 {% block content %}
 	
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
+<script>
+   $(document).ready(function() {
+$("#phone").keyup(function() {
+var x = document.getElementById('showSearchDiv');
+if($(this).val() == "") {
+  x.style.display = 'none';
+} else {
+  x.style.display = 'block';
+}
+});
+});
+</script>
+
+{% for message in messages %}
+<div class="alert alert-danger">
+	<strong>Danger!</strong> {{message}}
+  </div>
+{% endfor %}
 	
   <!--================Login Box Area =================-->
 	<section class="login_box_area section-margin">
@@ -34,7 +53,15 @@
 								<input type="text" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
 							  </div>
 							  <div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="phone" name="phone" placeholder="Mobile No" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile No'">
+								<input type="text" class="form-control" id="phone" name="phone" placeholder="Mobile No" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile No'"><br>
+								<div class="text-center">
+									<a  class="button button-paypal" id="otpbutton" >Send Otp</a>
+								</div>
+							  </div>
+							  
+							  <div class="col-md-12 form-group" id="showSearchDiv" style="display:none">
+								<input type="text" class="form-control" id="otp" name="otp" placeholder="Enter Otp" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile No'">
+								
 			  				</div>
 			  
               <div class="col-md-12 form-group">
@@ -56,4 +83,45 @@
 
 
   <!--================ Start footer Area  =================-->	
+{% load static %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script>
+const otpbutton = document.getElementById('otpbutton')
+otpbutton.addEventListener('click',()=>{
+
+console.log("safa");
+  // const add1 = document.getElementById('add1').value
+  // const add2 = document.getElementById('add2').value
+  // const add3 = document.getElementById('add3').value
+  // const city = document.getElementById('city').value
+  // const mob = document.getElementById('mob').value
+  const phone = document.getElementById('phone').value
+
+  $.ajax({
+    url:'otpview/',
+    type:'post',
+    data:{
+      phone:phone,
+      csrfmiddlewaretoken:csrftoken
+    },
+    
+    success:function(respose){
+	  alert("Otp Sended");
+	  
+    //   window.location.replace("http://localhost:8000/payment");
+    },
+    error:function(XMLHttpRequest, textStatus, errorThrown){
+      // alert("Status: " + textStatus); alert("Error: " + errorThrown);
+      alert("Enter Your Valid Data") 
+    }
+  });
+ 
+});
+
+
+  </script>
+  
+
+    <script src="{% static 'user/js/index.js' %}"></script>
   {% endblock content %}

@@ -3,6 +3,9 @@
 
 {% block content %}
     {% load static %}
+    
+
+    <!-- Button trigger modal -->
 
     
   <section class="cart_area">
@@ -28,6 +31,7 @@
                         
                         {% if order.customer == request.user %}
                             
+                        
                         
                             
                           <tr>
@@ -65,7 +69,11 @@
                               </td>
                           </tr>
                           {% elif order.customer is not None %}
-
+                          
+                          {% if item.complete == False %}
+                              
+                          
+                              
                           <tr>
                             <td>
                                 <div class="media">
@@ -101,6 +109,11 @@
                               <a href="{% url 'productdetails' item.product.id %}"><i  class="fas fa-pen-alt"></i></a>
                             </td>
                         </tr>
+                        {% endif %}
+                            {% elif order.customer is none %}
+
+                            <h4>affa</h4>
+
                           {% endif %}
                           {% endfor %}
                           
@@ -125,7 +138,7 @@
                                   <h5>Subtotal</h5>
                               </td>
                               <td>
-                                  <h5>${{order.get_cart_total}}</h5>
+                                  <h5>${{tot}}</h5>
                               </td>
                           </tr>
                                                     <tr class="out_button_area">
@@ -151,4 +164,23 @@
           </div>
       </div>
   </section>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        $('table thead th').each(function(i) {
+            calculateColumn(i);
+        });
+    });
+
+    function calculateColumn(index) {
+        var total = 0;
+        $('table tr').each(function() {
+            var value = parseInt($('td', this).eq(index).text());
+            if (!isNaN(value)) {
+                total += value;
+            }
+        });
+        $('table tfoot td').eq(index).text('Total: ' + total);
+    }
+</script>
   {% endblock content %}

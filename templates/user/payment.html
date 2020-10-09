@@ -21,7 +21,7 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '{{order.get_cart_total}}'
+                            value: '{{tot}}'
                         }
                     }]
                 });
@@ -33,7 +33,9 @@
                     // Show a success message to the buyer
                     
                     alert('Transaction completed by ' + details.payer.name.given_name + '!');
-                    window.location.replace("http://127.0.0.1:8000/cart");
+                    window.location.replace("http://localhost:8000/orderproceed");
+
+                    
                     
                 });
             }
