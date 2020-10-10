@@ -16,8 +16,11 @@
   <link rel="stylesheet" href="{% static 'user/vendors/owl-carousel/owl.carousel.min.css' %}">
 
   <link rel="stylesheet" href="{% static 'user/css/style.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <script type="text/javascript">
+
+   
 
     function getCookie(name) {
       var cookieValue = null;
@@ -46,13 +49,68 @@
 
 
 
+    
+    
     let device = getCookie('device')
-
+    // console.log(device);
     if (device == null || device == undefined) {
       device = uuidv4()
     }
 
     document.cookie = 'device=' + device + ";max-age=31536000;path=/"
+    // document.cookie = 'cart=' + 0 + ";max-age=31536000;path=/"
+
+    // let device = getCookie('device')
+    const jj= document.getElementById('#GFG_down')
+    mm= JSON.stringify(device);
+    $(document).ready(function(){
+      $.ajax({
+        url:'',
+        type: 'GET',
+        data: {
+          coo:device,
+          },
+          success: function (response) {
+
+              
+            let cart = getCookie('cart')
+            console.log(cart)
+            if (cart>0){
+              $(".nav-shop__circle").html(cart)
+
+            }else{
+              $(".nav-shop__circle").html(cart)
+            }
+            
+            
+        }
+      });
+      
+      $.ajax({
+        url:'cart/',
+        type: 'GET',
+        data: {
+          coo:device,
+          },
+          success: function (response) {
+
+            console.log("czx")
+            let cart = getCookie('cart')
+            console.log(cart)
+            if (cart>0){
+              $(".nav-shop__circle").html(cart)
+
+            }else{
+              $(".nav-shop__circle").html(cart)
+            }
+            
+            
+        }
+      });
+      // $("#GFG_down").html(device)
+
+    });
+    
     //document.cookie ='device=' + device + ";domain=;path=/"
     //document.cookie = 'cookie=ok;expires='+now.toGMTString()+';path=/';
 
@@ -102,6 +160,11 @@
               &nbsp;
               &nbsp;
               &nbsp;
+
+              <!-- <p id="GFG_down" 
+              style="color:green;  
+                     font-weight: bold" ;> fsfsdf
+           </p> -->
 
 
               <li class="nav-item submenu dropdown">

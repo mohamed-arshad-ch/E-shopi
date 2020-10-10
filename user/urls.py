@@ -32,7 +32,8 @@ urlpatterns = [
     path('otpview/',views.OtpView.as_view()),
     path('orderproceed',views.dfg),
     path('orderhistory',views.orderhistory,name="orderhistory"),
-    path('getshipping/',views.Getshipping.as_view())
+    path('getshipping/',views.Getshipping.as_view()),
+   
 
 
 ]

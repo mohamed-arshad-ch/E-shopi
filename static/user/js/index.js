@@ -45,10 +45,7 @@ btns.forEach((btn) => {
 
         // window.location.replace("http://localhost:8000");
       },
-      error: function (XMLHttpRequest, textStatus, errorThrown) {
-        // alert("Status: " + textStatus); alert("Error: " + errorThrown);
-        alert("Enter Your Valid Data")
-      }
+    
     });
 
 
@@ -64,19 +61,25 @@ function sdf() {
 
 
 
-
+  let device = getCookie('device')
   console.log("Pro");
   $.ajax({
     url: 'savebook/',
     type: 'GET',
     data: {
-      button_text: "asdas"
+      button_text: "asdas",
+      coo:device
     },
     success: function (response) {
 
       console.log(response.count)
 
-      $(".nav-shop__circle").html(response.count - 3)
+
+      $(".nav-shop__circle").html(response.count)
+      let cart = getCookie('cart')
+      a = parseInt(cart)
+      c= a+1
+      document.cookie = 'cart=' + c + ";max-age=31536000;path=/"
     }
   });
 

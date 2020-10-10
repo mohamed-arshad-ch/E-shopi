@@ -20,7 +20,8 @@ urlpatterns = [
     path('statuschange/<int:id>',views.statuschange,name="statuschange"),
     path('productstatuschange/<int:id>',views.productstatuschange,name="productstatuschange"),
     path('users',views.users,name="users"),
-    path('useredit/<int:id>',views.useredit,name="useredit")
+    path('useredit/<int:id>',views.useredit,name="useredit"),
+    
    
 
 ]

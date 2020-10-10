@@ -19,7 +19,10 @@ f = ""
 
 
 def landingpage(request):
-
+    
+    
+    device = request.GET.get('coo')
+    # print(device)
     if request.user.is_authenticated:
 
         user = User.objects.get(username=request.user)
@@ -32,21 +35,25 @@ def landingpage(request):
         print(queryset)
         df = queryset.count()
 
-        print("-------------------")
-        print(df)
-        print("-------------------")
+        # print("-------------------")
+        # print(df)
+        # print("-------------------")
         cartItems = df
         context = {'order': order, 'cartItems': cartItems}
+        products = Product.objects.all()
+        response = render(request, 'user/index.html',
+                        {'products': products, 'cartItems': cartItems})
+        response.set_cookie("cart",df)
+        
+        return response
 
     else:
-        try:
-            customer = request.user.customer
+        
+            
+        
+        customer, created = Customer.objects.get_or_create(device=device)
 
-        except:
-            device = request.COOKIES['device']
-            customer, created = Customer.objects.get_or_create(device=device)
-
-        order, created = Order.objects.get_or_create(
+        order =  Order.objects.get(
             customer=customer, complete=False)
 
         queryset = OrderItem.objects.filter(order=order)
@@ -55,14 +62,21 @@ def landingpage(request):
         print(df)
         print("-------------------")
         cartItems = df
-        context = {'order': order, 'cartItems': cartItems}
+        
+        
+        products = Product.objects.all()
+        
+        response = render(request, 'user/index.html',
+                        {'products': products })
+        response.set_cookie("cart",df)
+            
+            
+        return response
 
-    products = Product.objects.all()
-    response = render(request, 'user/index.html',
-                      {'products': products, 'cartItems': cartItems})
-    response.set_cookie('java-tutorial', 'javatpoint.com')
+        
 
-    return response
+        
+    
 
 
 def shopgrid(request):
@@ -144,7 +158,7 @@ def cart(request):
 
         print(main)
 
-        context = {'order': order, 'cartItems': cartItems, 'tot': main}
+        context = {'order': order, 'tot': main}
         return render(request, 'user/cart.html', context)
 
 
