@@ -4,6 +4,12 @@ from django.contrib import messages
 import datetime
 from datetime import date
 from django.core.files.storage import FileSystemStorage
+import base64
+from PIL import Image
+from base64 import decodestring
+import binascii
+from django.core.files import File
+from django.core.files.base import ContentFile
 
 # Create your views here.
 
@@ -173,12 +179,16 @@ def productadd(request):
         cate = request.POST['category']
         price = request.POST['price']
         qty = request.POST['qty']
-        pic = request.FILES.get('myfile')
+        pic = request.POST['imagebase']
+        
+        format, imgstr = pic.split(';base64,')
+        ext = format.split('/')[-1]
+        data = ContentFile(base64.b64decode(imgstr),name='temp.' + ext)
 
         cr = Category.objects.get(cname=cate)
 
         product = Product.objects.create(
-            name=pname, cname=cr, description=description, price=price, qty=qty, image=pic)
+            name=pname, cname=cr, description=description, price=price, qty=qty, image=data)
         return redirect('product')
     else:
 
