@@ -1,5 +1,8 @@
 {% extends 'default dashbord/base.html' %}
 
+  
+
+  
 {% block content %}
 {% load static %}
 
@@ -18,7 +21,7 @@
             
           
             
-          <table class="table align-items-center table-flush">
+          <table id="table1" class="table align-items-center table-flush">
             <thead class="thead-light">
               <tr>
                 <th scope="col" class="sort" data-sort="name">Date Ordered</th>
@@ -33,7 +36,7 @@
                 
               </tr>
             </thead>
-            {% for ord in order  %}
+            <!-- {% for ord in order  %}
             
             {% if ord.get_cart_total > 0 %}
 
@@ -60,6 +63,11 @@
                 <td>
                   <p>
                     
+                    {% for orf in orderitem  %}
+                    {{orf.status_track}}
+                      
+                    {% endfor %}
+                      
                     
                       
                   </p>
@@ -87,13 +95,112 @@
             
 
             {% endif %}
+            {% endfor %} -->
+            
+            {% for ord in order  %}
+            
+            {% if ord.order.customer.user == None %}
+
+            {% else %}
+            
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+              
+            
+              
+            <tbody>
+              <tr>
+                <td>
+                  {{ord.order.date_ordered}}
+                </td>
+                <td>
+                  {{ord.order.get_cart_total}}
+                </td>
+                <td>
+                  
+                  {% if ord.status_track == 0 or ord.status_track == 1 %}
+                  <p>Pending</p>
+                  {% else %}
+                  <p>Complete</p>
+                    
+                  {% endif %}
+                    
+                  
+                </td>
+                <td class="customerIDCell">
+                  
+                  
+                  {{ord.order.customer.user}}
+                    
+                  
+                  
+                    
+                  
+                </td>
+                <td>
+                  <a href="{% url 'statuschange' ord.order.id %}"><button class="btn btn-primary" >Action</button></a>
+                </td>
+
+              </tr>
+            </tbody>
+            {% endif %}
+          
             {% endfor %}
+            
           </table>
           
         </div>
         
       </div>
     </div>
+    
   </div>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- <script>
+    $(document).ready(function(){
+      $("#gh").click(function(){
+        $("#table1 .customerIDCell").each(function(){
+          // console.log($(this).text());
+         
+          var customerId = $(this).html()
+
+          var fruits = []
+          fruits.push(customerId)
+          console.log((fruits));
+
+          // var san = customerId;
+
+          // if (customerId == san) {
+          //   console.log("error");
+          //   console.log(san);
+            
+          //   $("td").hide()
+          // }
+          // }else{
+          //   console.log(customerId);
+          // }
+          
+
+          // var dgt = $(this).text()
+          // if (dgt==dgt){
+          //   console.log(dgt)
+          // }
+      });
+      })
+      
+    });
+  </script> -->
+  
 {% endblock %}

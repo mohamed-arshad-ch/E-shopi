@@ -102,9 +102,12 @@ def dashboard(request):
 
 
 def orders(request):
-    order = Order.objects.all()
-    orderitem = OrderItem.objects.all()
+    
+    projects = OrderItem.objects.select_related('order').filter(complete=True)
+    # for project in projects:
+    #     if project.order.customer.user is not None:
 
+    #         print(project.order.customer.user)
     # for gh in order:
     #     print(gh)
     #     jh = OrderItem.objects.filter(order=gh)
@@ -124,7 +127,7 @@ def orders(request):
     
     
 
-    return render(request, 'default dashbord/orders.html', {'order': order,'orderitem':orderitem})
+    return render(request, 'default dashbord/orders.html', {'order': projects})
 
 
 def products(request):

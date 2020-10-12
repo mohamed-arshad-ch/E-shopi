@@ -212,7 +212,8 @@
 
                     success: function (respose) {
                         alert("Cart Added Successfully");
-                        window.location.replace("http://localhost:8000/payment");
+                        // window.location.replace("http://localhost:8000/payment");
+                        document.location.href ="{% url 'payment'  %}"
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         // alert("Status: " + textStatus); alert("Error: " + errorThrown);

@@ -30,7 +30,7 @@ urlpatterns = [
     path('shippinaddress/',views.ShippingWalidation.as_view()),
 
     path('otpview/',views.OtpView.as_view()),
-    path('orderproceed',views.dfg),
+    path('orderproceed/',views.dfg,name="orderproceed"),
     path('orderhistory',views.orderhistory,name="orderhistory"),
     path('getshipping/',views.Getshipping.as_view()),
    
