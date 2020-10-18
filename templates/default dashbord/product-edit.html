@@ -115,6 +115,11 @@ img {
                         <input type="text" id="input-username" class="form-control" name="qty"  value="{{product.qty}}" required>
                       </div>
                       <div class="form-group">
+                        <label class="form-control-label" for="input-username">Image</label>
+                        <img width="80" src="{% static 'images/' %}{{product.image}}" alt="">
+                      </div>
+
+                      <div class="form-group">
                         <!-- <label class="form-control-label" for="input-username">Image</label> -->
                         <input type="text" id="imageBaseData"  class="form-control" name="imagebase" required >
 

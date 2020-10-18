@@ -46,38 +46,178 @@
         <!-- Collapse -->
         <div class="collapse navbar-collapse" id="sidenav-collapse-main">
           <!-- Nav items -->
+          
+          
+            
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="{% url 'dashboard' %}">
-                <i class="ni ni-collection text-primary"></i>
-                <span class="nav-link-text">HOME</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'orders' %}">
-                <i class="ni ni-cart text-orange"></i>
-                <span class="nav-link-text">ORDERS</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'product' %}">
-                <i class="ni ni-fat-add text-primary"></i>
-                <span class="nav-link-text">PRODUCTS</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'category' %}">
-                <i class="ni ni-box-2 text-yellow"></i>
-                <span class="nav-link-text">CATEGORIES</span>
-              </a>
-            </li>
+          {% if active == 1 %}
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'dashboard' %}">
+              <i class="ni ni-collection text-primary"></i>
+              <span class="nav-link-text">HOME</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'orders' %}">
+              <i class="ni ni-cart text-orange"></i>
+              <span class="nav-link-text">ORDERS</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'product' %}">
+              <i class="ni ni-fat-add text-primary"></i>
+              <span class="nav-link-text">PRODUCTS</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'category' %}">
+              <i class="ni ni-box-2 text-yellow"></i>
+              <span class="nav-link-text">CATEGORIES</span>
+            </a>
+          </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'users' %}">
-                <i class="ni ni-active-40 text-red"></i>
-                <span class="nav-link-text">USERS</span>
-              </a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users' %}">
+              <i class="ni ni-active-40 text-red"></i>
+              <span class="nav-link-text">USERS</span>
+            </a>
+          </li>
+
+
+          {% elif active == 2 %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+              <i class="ni ni-collection text-primary"></i>
+              <span class="nav-link-text">HOME</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'orders' %}">
+              <i class="ni ni-cart text-orange"></i>
+              <span class="nav-link-text">ORDERS</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'product' %}">
+              <i class="ni ni-fat-add text-primary"></i>
+              <span class="nav-link-text">PRODUCTS</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'category' %}">
+              <i class="ni ni-box-2 text-yellow"></i>
+              <span class="nav-link-text">CATEGORIES</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users' %}">
+              <i class="ni ni-active-40 text-red"></i>
+              <span class="nav-link-text">USERS</span>
+            </a>
+          </li>
+
+          {% elif active == 3 %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+              <i class="ni ni-collection text-primary"></i>
+              <span class="nav-link-text">HOME</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'orders' %}">
+              <i class="ni ni-cart text-orange"></i>
+              <span class="nav-link-text">ORDERS</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'product' %}">
+              <i class="ni ni-fat-add text-primary"></i>
+              <span class="nav-link-text">PRODUCTS</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'category' %}">
+              <i class="ni ni-box-2 text-yellow"></i>
+              <span class="nav-link-text">CATEGORIES</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users' %}">
+              <i class="ni ni-active-40 text-red"></i>
+              <span class="nav-link-text">USERS</span>
+            </a>
+          </li>
+
+          {% elif active == 4 %}
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'dashboard' %}">
+              <i class="ni ni-collection text-primary"></i>
+              <span class="nav-link-text">HOME</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'orders' %}">
+              <i class="ni ni-cart text-orange"></i>
+              <span class="nav-link-text">ORDERS</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'product' %}">
+              <i class="ni ni-fat-add text-primary"></i>
+              <span class="nav-link-text">PRODUCTS</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'category' %}">
+              <i class="ni ni-box-2 text-yellow"></i>
+              <span class="nav-link-text">CATEGORIES</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users' %}">
+              <i class="ni ni-active-40 text-red"></i>
+              <span class="nav-link-text">USERS</span>
+            </a>
+          </li>
+          {% elif active == 5 %}
+
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'dashboard' %}">
+              <i class="ni ni-collection text-primary"></i>
+              <span class="nav-link-text">HOME</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'orders' %}">
+              <i class="ni ni-cart text-orange"></i>
+              <span class="nav-link-text">ORDERS</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'product' %}">
+              <i class="ni ni-fat-add text-primary"></i>
+              <span class="nav-link-text">PRODUCTS</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{% url 'category' %}">
+              <i class="ni ni-box-2 text-yellow"></i>
+              <span class="nav-link-text">CATEGORIES</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'users' %}">
+              <i class="ni ni-active-40 text-red"></i>
+              <span class="nav-link-text">USERS</span>
+            </a>
+          </li>
+            
+          {% endif %}
+            
 
 
 

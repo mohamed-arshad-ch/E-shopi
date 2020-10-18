@@ -183,9 +183,25 @@ h2 {
                                         {% endif %}
                                             
                                        
+                                        <!-- <div class="col my-auto">
+                                          
+                                          
+                                        </div> -->
                                         <div class="col my-auto">
-                                           <a href="{% url 'productstatuschange' orr.id %}"> <button class="btn btn-primary">Status</button></a>
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Status Change
+                                                <span class="caret"></span></button>
+                                                <ul class="dropdown-menu">
+                                                  <li><a href="{% url 'prostatus' id=orr.id sts='0' %}">Packed</a></li>
+                                                  <li><a href="{% url 'prostatus' id=orr.id sts='1' %}">Out of Delivary</a></li>
+                                                  <li><a href="{% url 'prostatus' id=orr.id sts='2' %}">Delivered</a></li>
+                                                 
+                                                </ul>
+                                              </div>
+                                          
                                         </div>
+                                        
+                                         
                                     </div>
                                 </div>
                             </div>

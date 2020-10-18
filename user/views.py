@@ -19,8 +19,7 @@ f = ""
 
 
 def landingpage(request):
-    
-    
+
     device = request.GET.get('coo')
     # print(device)
     if request.user.is_authenticated:
@@ -35,25 +34,20 @@ def landingpage(request):
         print(queryset)
         df = queryset.count()
 
-        # print("-------------------")
-        # print(df)
-        # print("-------------------")
         cartItems = df
         context = {'order': order, 'cartItems': cartItems}
         products = Product.objects.all()
         response = render(request, 'user/index.html',
-                        {'products': products, 'cartItems': cartItems})
-        response.set_cookie("cart",df)
-        
+                          {'products': products, 'cartItems': cartItems})
+        response.set_cookie("cart", df)
+
         return response
 
     else:
-        
-            
-        
+
         customer, created = Customer.objects.get_or_create(device=device)
 
-        order =  Order.objects.get(
+        order = Order.objects.get(
             customer=customer, complete=False)
 
         queryset = OrderItem.objects.filter(order=order)
@@ -62,21 +56,14 @@ def landingpage(request):
         print(df)
         print("-------------------")
         cartItems = df
-        
-        
+
         products = Product.objects.all()
-        
+
         response = render(request, 'user/index.html',
-                        {'products': products })
-        response.set_cookie("cart",df)
-            
-            
+                          {'products': products})
+        response.set_cookie("cart", df)
+
         return response
-
-        
-
-        
-    
 
 
 def shopgrid(request):
@@ -357,7 +344,6 @@ def login(request):
                 messages.info(request, 'The User Is Dectivate Please Contact')
                 return redirect('login')
 
-
         else:
             print("loging rror")
             messages.info(request, 'Login Error')
@@ -394,7 +380,7 @@ def register(request):
         phone = request.COOKIES['phone']
         if b["status"] == 'success':
             user = User.objects.create_user(
-                username=username, email=email, password=password, first_name=fname, last_name=phone,is_staff=True)
+                username=username, email=email, password=password, first_name=fname, last_name=phone, is_staff=True)
             device = request.COOKIES['device']
 
             device = request.COOKIES['device']
@@ -436,7 +422,8 @@ def register(request):
                     messages.info(request, 'Login Successfully')
                     return redirect('landingpage')
                 else:
-                    messages.info(request, 'The User Is Dectivate Please Contact')
+                    messages.info(
+                        request, 'The User Is Dectivate Please Contact')
                     return redirect('login')
             else:
                 messages.info(request, 'The Otp Is Not Ready')
@@ -578,7 +565,8 @@ def otp(request):
                     messages.info(request, 'Login Successfully')
                     return redirect('landingpage')
                 else:
-                    messages.info(request, 'The User Is Dectivate Please Contact')
+                    messages.info(
+                        request, 'The User Is Dectivate Please Contact')
                     return redirect('login')
             else:
                 messages.info(request, 'The Otp Is Not Ready')

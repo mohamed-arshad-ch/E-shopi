@@ -18,7 +18,7 @@ urlpatterns = [
     path('productdelete/<int:id>/',views.productdelete,name="productdelete"),
     path('categorysortadmin/<int:id>/',views.categorysortadmin,name="categorysortadmin"),
     path('statuschange/<int:id>',views.statuschange,name="statuschange"),
-    path('productstatuschange/<int:id>',views.productstatuschange,name="productstatuschange"),
+    path('prstatus/<int:id>/<str:sts>/',views.prostatus,name="prostatus"),
     path('users',views.users,name="users"),
     path('useredit/<int:id>',views.useredit,name="useredit"),
     
