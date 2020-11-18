@@ -60,7 +60,8 @@
     document.cookie = 'device=' + device + ";max-age=31536000;path=/"
     // document.cookie = 'cart=' + 0 + ";max-age=31536000;path=/"
 
-    // let device = getCookie('device')
+    let devicel = getCookie('device')
+    console.log(devicel);
     const jj= document.getElementById('#GFG_down')
     mm= JSON.stringify(device);
     $(document).ready(function(){
@@ -184,7 +185,7 @@
 
                   <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                   {% else %}
-                  <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
                   {% endif %}
                 </ul>
               </li>

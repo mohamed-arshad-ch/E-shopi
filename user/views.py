@@ -25,8 +25,9 @@ def landingpage(request):
     if request.user.is_authenticated:
 
         user = User.objects.get(username=request.user)
-
+        print(user)
         customer = Customer.objects.get(user=user)
+        print(customer)
         order = Order.objects.get(customer=customer)
 
         queryset = OrderItem.objects.filter(order=order, complete=False)
@@ -414,9 +415,14 @@ def register(request):
                     device = request.COOKIES['device']
 
                     de = Customer.objects.get(name=user.first_name)
+                    
 
                     auth.login(request, user)
-
+                    customer = Customer.objects.get(device=device)
+                    print(customer)
+                    order = Order.objects.get(customer=customer)
+                    order.customer = de
+                    order.save()
                     print(de.name)
 
                     messages.info(request, 'Login Successfully')
@@ -637,7 +643,7 @@ def addcartfromland(request, id):
         device = request.COOKIES['device']
         order, created = Order.objects.get_or_create(
             customer=customer, complete=False)
-
+        print(order)
         order.device = device
         order.save()
         orderItem, created = OrderItem.objects.get_or_create(
@@ -658,9 +664,15 @@ def itemplus(request, id):
 
 def itemminus(request, id):
     orderitem = OrderItem.objects.get(id=id)
-    orderitem.quantity = orderitem.quantity-1
-    orderitem.save()
-    return redirect('cart')
+    if orderitem.quantity <= 1:
+        orderitem.quantity = 1
+        orderitem.save()
+        return redirect('cart')
+    else:
+
+        orderitem.quantity = orderitem.quantity-1
+        orderitem.save()
+        return redirect('cart')
 
 
 def removewishlist(request, id):
@@ -763,7 +775,7 @@ class AjaxHandler(View):
             device = request.COOKIES['device']
             order, created = Order.objects.get_or_create(
                 customer=customer, complete=False)
-
+            print(order)
             order.device = device
             order.save()
             orderItem, created = OrderItem.objects.get_or_create(

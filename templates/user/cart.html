@@ -49,15 +49,16 @@
                                   <h5>${{item.product.price|floatformat:2}}</h5>
                               </td>
                               <td>
-                                <a href="{% url 'itemplus' item.id %}"><button class="btn btn-light">+</button></a>
+                                <a href="{% url 'itemminus' item.id %}"><button class="btn btn-light">-</button></a>
                                 <div class="product_count">
                                    
-                                    <input type="text" name="qty" id="sst" maxlength="12" value="{{item.quantity}}" title="Quantity:"
-                                        class="input-text qty">
+                                    <input type="text" name="qty"  id="sst" maxlength="12" value="{{item.quantity}}" title="Quantity:"
+                                        class="input-text qty" disabled>
                                     
                                    
                                 </div>
-                                <a href="{% url 'itemminus' item.id %}"><button class="btn btn-light">-</button></a>
+                                <a href="{% url 'itemplus' item.id %}"><button class="btn btn-light">+</button></a>
+                               
                               </td>
                              
                               <td>
@@ -89,15 +90,17 @@
                                 <h5>${{item.product.price|floatformat:2}}</h5>
                             </td>
                             <td>
-                                <a href="{% url 'itemplus' item.id %}"><button class="btn btn-light">+</button></a>
+                                <a href="{% url 'itemminus' item.id %}"><button class="btn btn-light">-</button></a>
+                                
                                 <div class="product_count">
                                    
                                     <input type="text" name="qty" id="sst" maxlength="12" value="{{item.quantity}}" title="Quantity:"
-                                        class="input-text qty">
+                                        class="input-text qty" disabled>
                                     
                                    
                                 </div>
-                                <a href="{% url 'itemminus' item.id %}"><button class="btn btn-light">-</button></a>
+                                <a href="{% url 'itemplus' item.id %}"><button class="btn btn-light">+</button></a>
+                                
                             </td>
                            
                             <td>
